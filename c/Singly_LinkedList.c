@@ -186,7 +186,7 @@ void main()
 
     do
     {
-       printf("1. Insert in front\n2. Insert at last\n3. Delete at front\n4. Delete at last\n5. Search\n6. Length\n7. Display List\n8. Exit\n\n");
+       printf("1. Insert in front\n2. Append at last\n3. Delete at front\n4. Delete at last\n5. Search\n6. Length\n7. Display List\n8. Exit\n\n");
        printf("Enter your choice: ");
        scanf("%d", &choice);
 
