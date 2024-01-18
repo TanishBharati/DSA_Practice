@@ -50,14 +50,120 @@ void push_back()
     }
 }
 
-void pop()
-{}
+void pop_front()
+{
+    Node* ptr;
+
+    if(head == NULL)
+    {
+        printf("List is Empty\n\n");
+        return;
+    }
+    else if(head->next == NULL)
+    {
+        head = NULL;
+        free(head);
+        printf("The only element in the list removed\n\n");
+    }
+    else
+    {
+        ptr = head;
+        head = head->next;
+        printf("Item %d removed\n\n", ptr->data);
+        free(ptr);
+    }
+}
+
+void pop_back()
+{
+    int item;
+    Node* ptr;
+    Node* temp = head;
+
+    if(head == NULL)
+    {
+        printf("List is Empty\n\n");
+        return;
+    }
+    else if(head->next == NULL)
+    {
+        head = NULL;
+        free(head);
+        printf("The only element in the list removed\n\n");
+    }
+    else
+    {
+        while(temp->next != NULL)
+        {
+            ptr = temp;
+            temp = temp->next;
+        }
+
+        ptr->next = NULL;
+        item = temp->data;
+        free(temp);
+
+        printf("Item %d removed\n\n", item);
+    }
+
+   
+}
 
 void search()
-{}
+{
+    int element, i=0, flag = 0;
+    Node* curr = head;
+
+    printf("Enter the element to be searched: ");
+    scanf("%d", &element);
+
+    if(head == NULL)
+    {
+        printf("List is Empty\n\n");
+        return;
+    }
+    else
+    {
+        while(curr != NULL)
+        {
+            if(curr->data == element)
+            {
+                printf("%d element found at index %d\n\n", element, i);
+                flag = 1;
+            }
+            curr = curr->next;
+            i++;
+        }
+        if(flag == 0)
+        {
+            printf("Element not found in the list\n\n");
+            return;
+        }
+    }
+}
 
 void length()
-{}
+{
+    int length = 0;
+    Node* temp = head;
+
+    if(head == NULL)
+    {
+        printf("List is Empty\n\n");
+        return;
+    }
+    else
+    {
+        while(temp != NULL)
+        {
+            length++;
+            temp = temp->next;
+        }
+
+        printf("The length of list is %d\n\n", length);
+        return;
+    }
+}
 
 void display()
 {
@@ -80,7 +186,7 @@ void main()
 
     do
     {
-       printf("1. Insert in front\n2. Insert at last\n3. Delete\n4. Search\n5. Length\n6. Display List\n7. Exit\n\n");
+       printf("1. Insert in front\n2. Insert at last\n3. Delete at front\n4. Delete at last\n5. Search\n6. Length\n7. Display List\n8. Exit\n\n");
        printf("Enter your choice: ");
        scanf("%d", &choice);
 
@@ -95,24 +201,28 @@ void main()
             break;
 
         case 3:
-            pop();
+            pop_front();
             break;
-
+        
         case 4:
-            search();
+            pop_back();
             break;
 
         case 5:
-            length();
+            search();
             break;
 
         case 6:
-            display();
+            length();
             break;
 
         case 7:
+            display();
+            break;
+
+        case 8:
             exit(1);
        }
-    } while (choice != 7);
+    } while (choice != 8);
     
 }
